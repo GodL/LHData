@@ -188,7 +188,7 @@ static CFComparisonResult ComparatorFunction(const void *val1, const void *val2,
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
     [[NSNotificationCenter defaultCenter ]removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
-    [self removeAllObject];
+//    [self removeAllObject];
     CFRelease(self->_dic);
     CFRelease(self->_array);
     pthread_mutex_destroy(&_lock);
