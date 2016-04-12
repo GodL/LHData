@@ -2,11 +2,12 @@
 //  AppDelegate.m
 //  LHDataDemo
 //
-//  Created by 3wchina01 on 16/4/12.
+//  Created by 3wchina01 on 16/4/6.
 //  Copyright © 2016年 3wchina01. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "DataViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    DataViewController* vc = [[DataViewController alloc] init];
+    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = nav;
     // Override point for customization after application launch.
     return YES;
 }
