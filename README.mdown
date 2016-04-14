@@ -1,27 +1,44 @@
 #LHData
 
 LHData主要是操作数据层的框架其中包括2种：
+
+
 1.网络数据
+ 
     (1).LHHTTPRequest 网络请求(基于CFNetWork)
+ 
     (2).LHNetWorkReachability 网络监测
+  
     (3).LHWebImage 图片缓存 (基于LHHTTPRequest,LHCache)
+
 2.本地数据
+ 
     (1).LHDB 模型化数据库 (基于sqlite3.0,LHModel)
+  
     (2).LHModel JSON<->Model转化
+  
     (3).LHCache 缓存(分为三种:内存缓存,数据库缓存,文件缓存)(基于LHDB)
 
 
 这几种不同功能的库都是相互联系的所以不能单独使用其中的一种。
 
 LHHTTPRequest:
+
     基于CFNetWork的网络请求。支持监测进度,范围请求,断点下载,阻塞下载,非阻塞下载。
+
 LHHTTPRequestManager:
+
     为了使LHHTTPRequest使用不那么复制,使用此类对LHHTTPRequest进行了简单的封装,功能有限。
+
 LHNetWorkReachability:
+
     使用SystemConfiguration封装了网络监测,类似苹果推荐的Reachability,网络切换的回调方式支持通知和block两种。
+
 LHWebImage:
+
     一个图片缓存应该具备两点:网络请求和缓存,LHWebImage使用LHHTTPRequest作为下载图片,LHCache实现缓存,加载图片逻辑:
             LHWebImage--->LHMemoryCache--->LHFileCache--->LHHTTPRequest.
+
 LHDB:
     模型化数据库,使用LHModel解析Model,拼接sql语句执行数据库操作。分为两种执行方式:
     1.同步执行(使用OSSpinLock保证线程安全,OSSpinLock是性能最高的锁,不过限制自旋锁可能会存在线程优先级反转的问题,所以在使用LHDB时尽量不要所有不同优先级的线程)。
